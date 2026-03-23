@@ -146,7 +146,7 @@ class TopdownHeatmapSimpleHead(TopdownHeatmapBaseHead):
             else:
                 self.final_layer = layers[0]
                 
-            self.final_layer_otherAnimals_femi_edited = build_conv_layer(
+            self.final_layer_otherAnimals = build_conv_layer(
                     cfg=dict(type='Conv2d'),
                     in_channels=conv_channels,
                     out_channels=20,
@@ -256,7 +256,7 @@ class TopdownHeatmapSimpleHead(TopdownHeatmapBaseHead):
         x = x[torch.where(cls==0)[0]]
         x_other = x_other[torch.where(cls!=0)[0]]
         x = self.final_layer(x)
-        x_other = self.final_layer_otherAnimals_femi_edited(x_other)
+        x_other = self.final_layer_otherAnimals(x_other)
         #print('shapes: ',x.shape, x_other.shape)
         return x, x_other
 
