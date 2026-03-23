@@ -31,12 +31,28 @@ This work is heavily inspired by the following repositories: [ViTPose](https://g
 
 For setting up, each model kindly follow the respective links. HRNet and TransPose have identical requirements.
 
+## Updates
+- [x] Supplementary test set added (not used for main paper experiments)
+       
 ## Todo
-- [x] Include model run instructions
-- [x] Demo script
+- [ ] Include model run instructions
+- [ ] Demo script
+- [ ] Upload additional 240 test elephant images (not used for main paper experiments)
+- [ ] Extend annotations to asian elephants 
 
- 
 ## Citatons
+If you find this work useful, kindly cite:
 ```
 Obafemi Jinadu, Karen Panetta, Jamie Heller et al. A Unified Approach to Pose Estimation in Elephants and Other Quadrupeds using Noisy Labels, 09 April 2025, PREPRINT (Version 1) available at Research Square [https://doi.org/10.21203/rs.3.rs-6397651/v1]
+```
+
+If you use the dataset, please also cite the original ELPephants dataset:
+```
+@InProceedings{Korschens_2019_ICCV,
+author = {Korschens, Matthias and Denzler, Joachim},
+title = {ELPephants: A Fine-Grained Dataset for Elephant Re-Identification},
+booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV) Workshops},
+month = {Oct},
+year = {2019}
+}
 ```
