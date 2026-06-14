@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Native build outputs
+*.so
+*.dylib
+*.dll
+*.o
+*.egg-info/
+build/
+dist/
+
+# Notebooks
+.ipynb_checkpoints/
+
+# Editors and OS metadata
+.idea/
+.vscode/
+.DS_Store
+
+# Experiment outputs
+log/
+logs/
+work_dirs/
+outputs/
+runs/
+wandb/
+checkpoints/
+weights/
+
+# Large model artifacts
+*.pt
+*.pth
+*.ckpt
+*.onnx
+
+# Local datasets
+data/
+dataset/
+datasets/
