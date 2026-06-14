@@ -25,6 +25,14 @@ The demo expects the ViTPose/MMDetection runtime to be installed. Model weights
 are intentionally not committed to the repository; download them from the link
 in the root README and pass the local checkpoint path with `--pose-checkpoint`.
 
+## Legacy Checkpoints
+
+Some released QuadPose checkpoints were trained before the non-elephant head was
+renamed from `final_layer_otherAnimals_femi_edited` to
+`final_layer_otherAnimals`. That mismatch is expected for older weights. The
+current `TopdownHeatmapSimpleHead` remaps the legacy state-dict keys at load
+time, so users should not need to manually edit checkpoint files.
+
 ## Remaining Work
 
 - Replace full environment exports with a minimal, tested environment file.

@@ -46,6 +46,10 @@ Use `--animal-type quadruped` for non-elephant quadrupeds. See
 [Production Readiness](docs/PRODUCTION_READINESS.md) for the current supported
 surface and remaining hardening work.
 
+Note: older released weights may contain the legacy head name
+`final_layer_otherAnimals_femi_edited`. The current code remaps that name to
+`final_layer_otherAnimals` when loading checkpoints.
+
 ## Acknowledgments
 This work is heavily inspired by the following repositories: [ViTPose](https://github.com/ViTAE-Transformer/ViTPose/tree/main), [HRNet](https://github.com/HRNet/HRNet-Human-Pose-Estimation/tree/master), [TransPose](https://github.com/yangsenius/TransPose/tree/main). We thank you.
 

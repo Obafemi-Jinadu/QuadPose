@@ -46,6 +46,9 @@ class TopdownHeatmapSimpleHead(TopdownHeatmapBaseHead):
         loss_keypoint (dict): Config for keypoint loss. Default: None.
     """
 
+    _LEGACY_OTHER_ANIMALS_LAYER = 'final_layer_otherAnimals_femi_edited'
+    _OTHER_ANIMALS_LAYER = 'final_layer_otherAnimals'
+
     def __init__(self,
                  in_channels,
                  out_channels,
@@ -153,6 +156,31 @@ class TopdownHeatmapSimpleHead(TopdownHeatmapBaseHead):
                     kernel_size=kernel_size,
                     stride=1,
                     padding=padding)
+
+    def _load_from_state_dict(self, state_dict, prefix, local_metadata, strict,
+                              missing_keys, unexpected_keys, error_msgs):
+        """Map legacy QuadPose checkpoint head names to the current module.
+
+        Early released QuadPose weights were trained with the non-elephant
+        prediction head named `final_layer_otherAnimals_femi_edited`. The
+        repository later cleaned the attribute name to `final_layer_otherAnimals`.
+        Keep both generations of checkpoints loadable by rewriting the old
+        state-dict keys just before PyTorch matches module parameters.
+        """
+        legacy_prefix = prefix + self._LEGACY_OTHER_ANIMALS_LAYER + '.'
+        current_prefix = prefix + self._OTHER_ANIMALS_LAYER + '.'
+
+        for key in list(state_dict.keys()):
+            if not key.startswith(legacy_prefix):
+                continue
+
+            new_key = current_prefix + key[len(legacy_prefix):]
+            if new_key not in state_dict:
+                state_dict[new_key] = state_dict[key]
+            del state_dict[key]
+
+        super()._load_from_state_dict(state_dict, prefix, local_metadata, strict,
+                                      missing_keys, unexpected_keys, error_msgs)
 
 
     def get_loss(self, output, target, target_weight,pseudo_flag = False,pseudo_difficulty='easy'):
