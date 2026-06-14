@@ -26,6 +26,26 @@
 
 Model weights can be downloaded [here](https://tufts.box.com/s/2f2tndlahxn2n0kynvpmqdem72qpke8p)
 
+## Quick demo
+
+After installing the ViTPose/MMDetection runtime and downloading the model
+weights, run inference on one image with:
+
+```bash
+python scripts/quadpose_vitpose_demo.py \
+  --image path/to/image.jpg \
+  --pose-config models/ViTPose/vitpose_base_teacher.py \
+  --pose-checkpoint path/to/quadpose_weights.pth \
+  --animal-type elephant \
+  --device cuda:0 \
+  --out-image outputs/demo.jpg \
+  --out-json outputs/demo.json
+```
+
+Use `--animal-type quadruped` for non-elephant quadrupeds. See
+[Production Readiness](docs/PRODUCTION_READINESS.md) for the current supported
+surface and remaining hardening work.
+
 ## Acknowledgments
 This work is heavily inspired by the following repositories: [ViTPose](https://github.com/ViTAE-Transformer/ViTPose/tree/main), [HRNet](https://github.com/HRNet/HRNet-Human-Pose-Estimation/tree/master), [TransPose](https://github.com/yangsenius/TransPose/tree/main). We thank you.
 
@@ -35,8 +55,8 @@ For setting up, each model kindly follow the respective links. HRNet and TransPo
 - [x] Supplementary test set added (not used for main paper experiments)
        
 ## Todo
-- [ ] Include model run instructions
-- [ ] Demo script
+- [x] Include model run instructions
+- [x] Demo script
 - [ ] Upload additional 240 test elephant images (not used for main paper experiments)
 - [ ] Extend annotations to asian elephants 
 
